@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="css/leaflet.css">
+  <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+  <link rel="stylesheet" href="css/leaflet-measure.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+		.header {
+			padding: 10px 16px;
+			background: #92C7CF;
+			color: #f1f1f1;
+		}
+		
+		.sticky {
+			position: fixed;
+			top: 0;
+			width: 100%;
+		}
+		
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+		
+		.count-box {
+            background-color: #ffffff; 
+        }
+		
+		.count-box p {
+            color: red;
+        }
+  </style>
+  <title>Prevalensi Stunting DIY</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/kemenkes.png" rel="icon">
+  <link href="assets/img/kemenkes.png" rel="kemenkes">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="index.html">Prevalensi Stunting <span>DIY</span></a></h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+		  <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">Pengertian</a></li>
+		  <li><a class="nav-link scrollto" href="#tabs">Information</a></li>
+		  <li><a class="nav-link scrollto" href="#webgis">MAP</a></li>
+          <li><a class="nav-link scrollto" href="#prevalensi">Prevalensi</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+		  <li><a class="nav-link scrollto " href="#pricing">Download</a></li>
+		  <li><a class="nav-link scrollto " href="#team">About Me</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="logout.php" class="get-started-btn scrollto">Log Out</a>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+      <div class="row">
+        <div class="col-xl-10">
+          <h1>Cegah Stunting Sebelum Genting!</h1>
+          <h2>Yuk, Kenali Stunting Sejak Dini.</h2>
+          <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/World_Health_Organization_Logo.svg/2560px-World_Health_Organization_Logo.svg.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Logo_of_the_Ministry_of_Health_of_the_Republic_of_Indonesia.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/b.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="https://seeklogo.com/images/P/puskesmas-logo-D5EA09221D-seeklogo.com.png" class="img-fluid" alt="" style="width:70%"></div>
+            <div class="swiper-slide"><img src="https://lh4.googleusercontent.com/proxy/SpxIRLeN6OUc5y10E9rFi0bxJI9CTH7ANmALhLzaCUeH5K1xZvrMvc4Y6ktWyzz-rZEwlrH3IZHeqQDeKOZWTZZvCUoXf9aAEAv6-prwPD9DqfewZpkQ" class="img-fluid" alt="" style="width:80%"></div>
+            <div class="swiper-slide"><img src="https://dinkes.jogjaprov.go.id/view_image/view/2679/Logo%20E.png" class="img-fluid" alt="" style="width:80%"></div>
+            <div class="swiper-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBUvLAkO3WodK3VmWxnTU_NHn0ZYGI_u8WuDPSCkY2vA&s" class="img-fluid" alt="" style="width:60%"></div>
+            <div class="swiper-slide"><img src="https://dinkes.bantulkab.go.id/storage/dinkes/partner/yNJ1gx5YCzqXUbwlJZDcdNWz7WNeNE6eNS1Un8b9.png" class="img-fluid" alt="" style="width:60%"></div>
+			<div class="swiper-slide"><img src="https://kulonprogokab.go.id/v3/portal/files/news/thumb/44f7073517369179fe879850e8c76d0c.png" class="img-fluid" alt="" style="width:60%"></div>
+			<div class="swiper-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Lambang_Kabupaten_Gunungkidul.png" class="img-fluid" alt="" style="width:60%"></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row no-gutters">
+          <div class="content col-xl-5 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Apa itu Stunting?</h3>
+              <p>Menurut WHO (2015), stunting adalah gangguan pertumbuhan dan perkembangan anak akibat kekurangan gizi kronis dan infeksi berulang, yang ditandai dengan panjang atau tinggi badannya berada di bawah standar.</p>
+              <a href="https://yankes.kemkes.go.id/view_artikel/1388/mengenal-apa-itu-stunting">Read More</a>
+            </div>
+          </div>
+          <div class="col-xl-7 d-flex align-items-stretch">
+            <div class="d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+				  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/World_Health_Organization_Logo.svg/2560px-World_Health_Organization_Logo.svg.png" style="width:40%">
+                  <p>Child stunting refers to a child who is too short for his or her age and is the result of chronic or recurrent malnutrition.</p>
+                  <a href="https://www.who.int/data/gho/indicator-metadata-registry/imr-details/72#:~:text=Child%20stunting%20refers%20to%20a,of%20inequalities%20in%20human%20development.">Read More</a>
+				</div>
+                <div class="col-md-6 " data-aos="fade-up" data-aos-delay="200">
+                  <img src="https://lh3.googleusercontent.com/proxy/Sb1jx2Xfe2AatVkaMG6Ukd6_rGZ1oTuc-wfT09OKaklnPJRt_l9wTjgLzDBvbMARC9rpm7k3AqKOQbhl1Zw4pTdhYOQh7CCxKv78z1zPg315F5BHDAxMmSYMOmibJOrZNMd_rllhzr0xY_7sm7z-" style="width:35%">
+                  <p>Stunting merupakan suatu keadaan di mana tinggi badan anak lebih rendah dari rata-rata untuk usianya karena kekurangan nutrisi yang berlangsung dalam jangka waktu yang lama.</p>
+                  <a href="https://ayosehat.kemkes.go.id/topik-penyakit/defisiensi-nutrisi/stunting">Read More</a>
+				</div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                  <img src="https://padanglawas.kemenag.go.id/media/photos/uploads/Peraturan%20Pemerintah%20Logo.png" style="width:30%">
+                  <p>Menurut Peraturan Presiden Republik Indonesia  Nomor 72 Tahun 2021, Stunting adalah gangguan pertumbuhan dan perkembangan anak akibat kekurangan gizi kronis dan infeksi berulang, yang ditandai dengan panjang atau tinggi badannya di bawah standar yang ditetapkan oleh menteri yang menyelenggarakan urusan pemerintahan di bidang kesehatan.</p>
+                  <a href="https://peraturan.bpk.go.id/Download/168225/Perpres%20Nomor%2072%20Tahun%202021.pdf">Download PERPRES</a>
+				</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Information Section ======= -->
+    <section id="tabs" class="tabs">
+      <div class="container" data-aos="fade-up">
+
+        <ul class="nav nav-tabs row d-flex">
+          <li class="nav-item col-2">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+              <i class="ri-gps-line"></i>
+              <h4 class="d-none d-lg-block">Penyebab</h4>
+            </a>
+          </li>
+          <li class="nav-item col-2">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+              <i class="ri-body-scan-line"></i>
+              <h4 class="d-none d-lg-block">Dampak</h4>
+            </a>
+		  <li class="nav-item col-2">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+              <i class="ri-body-scan-line"></i>
+              <h4 class="d-none d-lg-block">Pencegahan</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+              <i class="ri-sun-line"></i>
+              <h4 class="d-none d-lg-block">Konsep Percepatan Penurunan Stunting</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
+              <i class="ri-store-line"></i>
+              <h4 class="d-none d-lg-block">TOC Percepatan Penurunan Stunting</h4>
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+			  <div class="col-lg-7 order-2 order-lg-1 mt-3 mt-lg-0">
+				<h3>Stunting disebabkan oleh :</h3>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Asupan gizi dan status kesehatan kurang.</li>
+                  <li><i class="ri-check-double-line"></i> Ketahanan pangan (ketersediaan, keterjangkauan dan akses pangan bergizi).</li>
+                  <li><i class="ri-check-double-line"></i> Lingkungan sosial (norma, makanan bayi dan anak, hygien, pendidikan, dan tempat kerja).</li>
+                  <li><i class="ri-check-double-line"></i> Lingkungan kesehatan (akses, pelayanan preventif dan kuratif).</li>
+                  <li><i class="ri-check-double-line"></i> Lingkungan pemukiman (air, santasi, kondisi bangunan.</li>
+				</ul>
+			  </div>
+              <div class="col-lg-5 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                <img src="assets/img/tabs-1.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Dampak dari Stunting :</h3>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Memiliki tubuh pendek dan berat badan rendah.</li>
+                  <li><i class="ri-check-double-line"></i> Memiliki tingkat kecerdasan di bawah rata-rata.</li>
+                  <li><i class="ri-check-double-line"></i> Imunitas tubuh lebih rendah, sehingga mudah sakit.</li>
+                  <li><i class="ri-check-double-line"></i> Beresiko mengidap berbagai penyakit.</li>
+				  <li><i class="ri-check-double-line"></i> Kemampuan kognitif yang lebih buruk dengan penurunan IQ.</li>
+				  <li><i class="ri-check-double-line"></i> Gangguan pemusatan konsentrasi belajar.</li>
+				  <li><i class="ri-check-double-line"></i> Performa dan produktifits yang rendah.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="assets/img/tabs-2.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+		  <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0">
+				<h3>Cara mencegah Stunting :</h3>
+				<ul>
+                  <li><i class="ri-check-double-line"></i> Cegah Anemia dengan konsumsi tinggi protein dan meminum TTD selama 3 bulan pertama kehamilan.</li>
+                  <li><i class="ri-check-double-line"></i> Cegah Kekurangan Energi Kronik (KEK) dengan konsumsi gizi seimbang.</li>
+                  <li><i class="ri-check-double-line"></i> Persiapkan Persalinan lebih awal dan dengan konsultasi dokter.</li>
+                  <li><i class="ri-check-double-line"></i> Berikan ASI Eksklusif dari usia 0 - 2 tahun (jika memungkinkan).</li>
+				  <li><i class="ri-check-double-line"></i> MPASI yang sesuai dengan kebutuhan berdasarkan umur.</li>
+				  <li><i class="ri-check-double-line"></i> Pemantauan Pertumbuhan bayi hingga usia 2 tahun, catat perkembangan berat dan tinggi badan anak disetiap bulan di posyandu, hasilnya bisa dicatat di buku KIA.</li>
+                </ul>
+              </div>
+              <div class="col-lg-8 order-1 order-lg-2 text-center">
+                <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0">
+				<h3>Kerangka Konsep Percepatan Penurunan Stunting</h3>
+				<p>
+                  Stunting atau anak pendek berdasarkan umur merupakan salah satu indikator kondisi gagal tumbuh pada anak berusia dibawah lima tahun (balita) akibat kekurangan asupan gizi kronis dan infeksi berulang terutama pada periode 1.000 Hari Pertama Kehidupan (HPK), yaitu dari janin hingga anak berusia 23 bulan.</p> 
+				<p>Karenanya periode 1.000 HPK ini disebut pula sebagai periode Emas untuk melakukan pencegahan atau koreksi masalah stunting dengan berbagai intervensi gizi spesifik dan sensitif. Intervensi gizi spesifik terdiri dari berbagai program yang bertujuan untuk menanggulangi penyebab langsung masalah stunting, sementara intervensi gizi sensitif merupakan kelompok program yang bertujuan untuk menanggulangi berbagai penyebab tak langsung dari stunting.
+                </p>
+              </div>
+              <div class="col-lg-8 order-1 order-lg-2 text-center">
+                <img src="assets/img/tabs-4.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-5">
+            <div class="row">
+              <div class="col-lg-3 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Kerangka Konsep atau TOC (Theory of Change) Percepatan Penurunan Stunting</h3>
+                <p>
+                  Sejumlah program yang tergolong dalam intervensi gizi spesifik dan sensitif telah ditetapkan sebagai bagian dari paket program prioritas untuk Percepatan Penurunan Stunting dalam Strategi Nasional atau Stranas. Keseluruhan dari paket program ini diharapkan dapat tersedia secara memadai dan berkualitas (supply side) serta dapat diakses dan dimanfaatkan secara utuh (demand side) oleh RT 1.000 HPK sebagai sasaran prioritas program.
+                </p>
+              </div>
+              <div class="col-lg-9 order-1 order-lg-2 text-center">
+                <img src="assets/img/tabs-5.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Information Section -->
+	
+	<!-- WebGIS-->
+    <section class="webgis" id="webgis">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2 class="section-heading text-uppercase"> MAP WebGIS</h2>
+          <h3 class="section-subheading text-muted">Prevalensi Stunting DIY</h3>
+          <iframe src="index-webgis.html" width="100%" height="700" frameborder="0" style="border: 0" allowfullscreen=""></iframe>
+        </div>
+      </div>
+    </section>
+    <!-- WebGIS-End-->
+	
+	<!-- ======= Prevalensi Section ======= -->
+    <section id="prevalensi" class="prevalensi section-bg ">
+      <div class="container" data-aos="fade-up">
+	  <div class="section-title">
+        <h2>Prevalensi</h2>
+		
+	<!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-2 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="48958" data-purecounter-duration="2" class="purecounter"></span>
+              <p>Sleman</p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="bi bi-journal-richtext"></i>
+              <span data-purecounter-start="0" data-purecounter-end="10662" data-purecounter-duration="3" class="purecounter"></span>
+              <p>Kota Yogyakarta</p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-headset"></i>
+              <span data-purecounter-start="0" data-purecounter-end="44620" data-purecounter-duration="3" class="purecounter"></span>
+              <p>Bantul</p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-people"></i>
+              <span data-purecounter-start="0" data-purecounter-end="28260" data-purecounter-duration="3" class="purecounter"></span>
+              <p>Gunungkidul</p>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-2 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-people"></i>
+              <span data-purecounter-start="0" data-purecounter-end="22780" data-purecounter-duration="3" class="purecounter"></span>
+              <p>Kulon Progo</p>
+            </div>
+          </div>
+		  
+		  <br style="white">*Jumlah Balita (anak)</br>
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+	
+		<div class="row">
+          <div class="col-md-13">
+            <div class= data-aos="fade-up" data-aos-delay="100">
+			<h3><a href="#">Data Prevalensi Stunting DIY</a></h3>
+		<table style="width:100%">
+		<tr>
+			<th>Kabupaten/ Kota</th>
+			<th>Jumlah Balita (anak)</th>
+			<th>Pendek (anak)</th>
+			<th>Sangat Pendek (anak)</th>
+			<th>Prevalensi (%)</th>
+		</tr>
+		<tr>
+			<td>Sleman</td>
+			<td>48.958</td>
+			<td>1.508</td>
+			<td>700</td>
+			<td>4,5</td>
+		</tr>
+		<tr>
+			<td>KulonProgo</td>
+			<td>22.708</td>
+			<td>1.545</td>
+			<td>351</td>
+			<td>8,3</td>
+		</tr>
+		<tr>
+			<td>GunungKidul</td>
+			<td>28.260</td>
+			<td>3.380</td>
+			<td>930</td>
+			<td>15,3</td>
+		</tr>
+		<tr>
+			<td>Kota Yogyakarta</td>
+			<td>10.662</td>
+			<td>1.065</td>
+			<td>189</td>
+			<td>11,8</td>
+		</tr>
+		<tr>
+			<td>Bantul</td>
+			<td>44.620</td>
+			<td>2.842</td>
+			<td>930</td>
+			<td>6,4</td>
+		</tr>
+		</table>
+        </div>
+        </div>
+		</div>
+      </div>
+	  </div>
+    </section><!-- End Prevalensi Section -->
+
+    <!-- ======= Portofolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Dokumentasi Percepatan Stunting di DIY.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-sleman">Sleman</li>
+              <li data-filter=".filter-yk">Kota Yogyakarta</li>
+              <li data-filter=".filter-bantul">Bantul</li>
+			  <li data-filter=".filter-gk">Gunungkidul</li>
+			  <li data-filter=".filter-kp">Kulon Progo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-sleman">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rembuk Stunting Kabupaten Sleman</h4>
+                <p>Sleman</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Rembuk Stunting Kabupaten Sleman"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftimesindonesia.co.id%2Fperistiwa-daerah%2F451566%2Fbupati-sleman-kustini-ajak-masyarakat-cegah-stunting&psig=AOvVaw0jX9dkjyr9kX3fHBkp6Rvy&ust=1714034854697000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJDMmse72oUDFQAAAAAdAAAAABBE" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-sleman">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rembuk Stunting Kabupaten Sleman</h4>
+                <p>Sleman</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Rembuk Stunting Kabupaten Sleman"><i class="bx bx-plus"></i></a>
+                  <a href="https://republika.co.id/berita/rsz9mv399/upaya-penurunan-angka-stunting-bupati-sleman-perlu-peran-serta-masyarakat" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-yk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Obrolan Tugu Yogyakarta</h4>
+                <p>Kota Yogyakarta</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Obrolan Tugu Yogyakarta"><i class="bx bx-plus"></i></a>
+                  <a href="https://dprd.jogjakota.go.id/detail/index/26337" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-yk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Penerimaan Piagam Angka Stunting Terendah di DIY</h4>
+                <p>Kota Yogyakarta</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Penerimaan Piagam Angka Stunting Terendah di DIY"><i class="bx bx-plus"></i></a>
+                  <a href="https://warta.jogjakota.go.id/detail/index/26234" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-gk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Sosialisasi Pencegahan Stunting</h4>
+                <p>Gunungkidul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Sosialisasi Pencegahan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.pojokmalioboro.com/daerah/12210902250/bkkbn-gelar-sosialisasi-pencegahan-stunting-di-kalurahan-pacarejo-gunungkidul" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-bantul">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-6.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Angka Stunting Kabupaten Bantul</h4>
+                <p>Bantul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-6.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Angka Stunting Kabupaten Bantul"><i class="bx bx-plus"></i></a>
+                  <a href="https://bantulkab.go.id/berita/detail/5894/meski-angkanya-turun--bantul-masih-punya-banyak-pr-selesaikan-stunting.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-bantul">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rembuk Stunting Kabupaten Bantul</h4>
+                <p>Bantul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Rembuk Stunting Kabupaten Bantul"><i class="bx bx-plus"></i></a>
+                  <a href="https://radarjogja.jawapos.com/bantul/65766983/penurunan-stunting-masih-terkendala" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-gk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>UGM Menangani Stunting di GK</h4>
+                <p>Gunungkidul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="UGM Menangani Stunting di GK"><i class="bx bx-plus"></i></a>
+                  <a href="https://ugm.ac.id/id/berita/ugm-dan-unjaya-ikut-penanganan-stunting-di-gunungkidul/" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-kp">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Percepatan Penurunan Stunting</h4>
+                <p>Kulon Progo</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Percepatan Penurunan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://kulonprogokab.go.id/v31/detil/10779/pencegahan-dan-penanganan-stunting-di-kulon-progo-diharapkan-dapat-berjalan-sinergi-berbagai-pihak" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-kp">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-10.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Sosialisasi Pencegahan Stunting</h4>
+                <p>Kulon Progo</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-10.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Sosialisasi Pencegahan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://kominfo.kulonprogokab.go.id/detil/1369/dinas-kominfo-kulon-progo-kuatkan-peranan-kim-dan-penanganan-stunting" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-sleman">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Pemda Salurkan Bantuan Stunting</h4>
+                <p>Sleman</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Pemda Salurkan Bantuan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftimesindonesia.co.id%2Findonesia-positif%2F445083%2Fkodim-dan-pemkab-sleman-kolaborasi-berantas-stunting&psig=AOvVaw0jX9dkjyr9kX3fHBkp6Rvy&ust=1714034854697000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJDMmse72oUDFQAAAAAdAAAAABAE" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-sleman">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Percepatan Penurunan Stunting</h4>
+                <p>Sleman</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Percepatan Penurunan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fjogja.antaranews.com%2Fberita%2F628125%2Fwabup-sleman-kasus-stunting-tidak-selalu-terkait-kemiskinan&psig=AOvVaw0jX9dkjyr9kX3fHBkp6Rvy&ust=1714034854697000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJDMmse72oUDFQAAAAAdAAAAABAK" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-sleman">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Percepatan Penurunan Stunting</h4>
+                <p>Sleman</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Percepatan Penurunan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.harianjogja.com%2Fjogjapolitan%2Fread%2F2023%2F08%2F31%2F512%2F1147036%2F2023-angka-prevalensi-stunting-sleman-ditargetkan-turun-14-persen&psig=AOvVaw0jX9dkjyr9kX3fHBkp6Rvy&ust=1714034854697000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJDMmse72oUDFQAAAAAdAAAAABA_" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-gk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>TNI Salurkan Bantuan untuk atasi Stunting</h4>
+                <p>Gunungkidul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="TNI Salurkan Bantuan untuk atasi Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://tniad.mil.id/danrem-072pmk-kapolda-diy-salurkan-bantuan-untuk-atasi/" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-gk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Penanganan Stunting</h4>
+                <p>Gunungkidul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Penanganan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fjogja.jpnn.com%2Fjogja-terkini%2F6323%2Fangka-stunting-di-gunungkidul-tinggi-ternyata-penyebabnya&psig=AOvVaw1UOaL56n45TNx4Xj_-C_lF&ust=1714030729376000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJDO3Zis2oUDFQAAAAAdAAAAABA4" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-gk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/6.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Sosialisasi Penanganan Stunting</h4>
+                <p>Gunungkidul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Sosialisasi Penanganan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fradarjogja.jawapos.com%2Fgunungkidul%2F65763523%2Fkalurahan-kelor-penyumbang-stunting-tertinggi-di-gunungkidul&psig=AOvVaw1UOaL56n45TNx4Xj_-C_lF&ust=1714030729376000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJDO3Zis2oUDFQAAAAAdAAAAABAy" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-yk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/7.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Sosialisasi Penanganan Stunting</h4>
+                <p>Kota Yogyakarta</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Sosialisasi Penanganan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.wartajogja.id/2023/03/tekanstunting-kampung-kricak-kidul-jadi.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-yk">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/8.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Turunkan Angka Stunting</h4>
+                <p>Kota Yogyakarta</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Turunkan Angka Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://jogja.tribunnews.com/2022/11/10/bappeda-kota-yogyakarta-dukung-kolaborasi-pemerintah-dan-swasta-turunkan-angka-anak-stunting" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-kp">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/9.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Turunkan Angka Stunting</h4>
+                <p>Kulon Progo</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Turunkan Angka Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.beritajogja.com/news/18573788/begini-cara-kab-kulonprogo-menekan-angka-kemiskinan-dan-stunting" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-kp">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/10.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Tekan Kasus Stunting di Sekolah</h4>
+                <p>Kulon Progo</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/10.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Tekan Kasus Stunting di Sekolah"><i class="bx bx-plus"></i></a>
+                  <a href="https://joglojateng.com/2022/10/28/tekan-kasus-stunting-dinkes-kulon-progo-berikan-tablet-tambah-darah-pada-siswi/" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4 col-md-6 portfolio-item filter-bantul">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/11.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Sosialisasi Pencegahan Stunting</h4>
+                <p>Bantul</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/11.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Sosialisasi Pencegahan Stunting"><i class="bx bx-plus"></i></a>
+                  <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2F%40News_UAD%2Fmahasiswa-kkn-universitas-ahmad-dahlan-sosialisasikan-pencegahan-stunting-di-srandakan-bantul-7f33aea6c4e8&psig=AOvVaw2RmB_75FF2jrIG5HR1t0c8&ust=1714036659866000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCOib_qrC2oUDFQAAAAAdAAAAABAK" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+		  
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Download Section ======= -->
+    <section id="pricing" class="pricing section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Download</h2>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: center;">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="box" data-aos="fade-up" data-aos-delay="100">
+              <h3>WEBGIS</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <div class="btn-wrap">
+                <a href="https://github.com/Dinasalmanuri/SIGWEB_M6" class="btn-buy">Download Now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-md-0">
+            <div class="box featured" data-aos="fade-up" data-aos-delay="200">
+              <h3>WEBGIS + BOOTSTRAP</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <div class="btn-wrap">
+                <a href="https://github.com/Dinasalmanuri/PSIGWEB_M7" class="btn-buy">Download Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Download Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>ABOUT ME</h2>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: center;">
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://wa.me/qr/4HH4UFW72JUSN1"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.instagram.com/dinsalmaa_?igsh=MjZranJqdHB6Nmdo"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/dina-salmanuri-223210291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Dina Salmanuri</h4>
+                <span>Mahasiswa TSPD'22</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-6">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info-box">
+                  <i class="bx bx-map"></i>
+                  <h3>Address</h3>
+                  <p>Seyegan, Sleman, Yogyakarta</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-box mt-4">
+                  <i class="bx bx-envelope"></i>
+                  <h3>Email</h3>
+                  <p>dinasalmanuri@mail.ugm.ac.id</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-box mt-4">
+                  <i class="bx bx-phone-call"></i>
+                  <h3>Call</h3>
+                  <p>+62 8122 8298 258</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Dina Salmanuri<span>.</span></h3>
+            <p>
+              Seyegan, Sleman,<br>
+              Yogyakarta <br><br>
+              <strong>Phone:</strong> +62 8122 8298 258<br>
+              <strong>Email:</strong> dinasalmanuri@mail.ugm.ac.id<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">Pengertian</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#tabs">Information</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#webgis">MAP</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#prevalensi">Prevalensi</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-6 col-md-6 footer-newsletter">
+            <h4>Quotes of the day</h4>
+            <p>Kesehatan selalu tampak berharga setelah kita kehilangannya.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Dina Salmanuri</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/presento-bootstrap-corporate-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-end pt-3 pt-md-0">
+        <a href="https://wa.me/qr/4HH4UFW72JUSN1" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+        <a href="https://www.instagram.com/dinsalmaa_?igsh=MjZranJqdHB6Nmdo" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/dina-salmanuri-223210291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
